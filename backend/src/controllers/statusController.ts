@@ -4,7 +4,18 @@ import { Status } from '../models/Status';
 export const getStatuses = async (req: Request, res: Response) => {
   const { date } = req.params;
   try {
-    const statuses = await Status.find({ 'report.timestamp': new Date(date) });
+    const startDate = new Date(date);
+    startDate.setHours(0,0,0,0);
+    const endDate = new Date(date);
+    endDate.setHours(23,59,59,999);
+
+    
+    const statuses = await Status.find({ 
+      'report.timestamp': {
+      $gte: startDate,
+      $lte: endDate,
+    },
+    });
     res.status(200).json(statuses);
   } catch (error) {
     res.status(500).json({ error: (error as Error).message });

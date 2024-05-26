@@ -12,13 +12,13 @@ interface IStatus extends Document {
 }
 
 const reportSchema = new Schema<IReport>({
-  id: { type: String, required: true },
+  id: { type: String, required: true, unique: true },
   value: { type: String, enum: ['ACTIVE', 'INACTIVE'], required: true },
   timestamp: { type: Date, required: true }
 });
 
 const statusSchema = new Schema<IStatus>({
-  hired_id: { type: String, required: true },
+  hired_id: { type: String, required: true},
   report: { type: [reportSchema], required: true }
 });
 

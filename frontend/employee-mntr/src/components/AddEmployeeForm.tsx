@@ -12,11 +12,10 @@
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
       try {
-        await addEmployee({ id: Date.now().toString(), user_id: userId, email }); // TODO: zmienić generowanie id
+        await addEmployee({ id: Date.now().toString(), user_id: userId, email });
         alert('Employee added successfully');
-        setEmail('');
+        setEmail('');      
         onEmployeeAdded();
-        
       } catch (error) {
         console.error('Error adding employee:', error);
       }

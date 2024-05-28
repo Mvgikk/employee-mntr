@@ -14,7 +14,9 @@ interface EmployeeRowProps {
 const EmployeeRow: React.FC<EmployeeRowProps> = ({ employee, onEmployeeRemoved }) => {
   return (
     <tr>
+      <td>{employee.id}</td>
       <td>{employee.email}</td>
+      <td>######TIMELINE######</td>
       <td>
         <RemoveEmployeeButton employeeId={employee.id} onEmployeeRemoved={onEmployeeRemoved} />
       </td>

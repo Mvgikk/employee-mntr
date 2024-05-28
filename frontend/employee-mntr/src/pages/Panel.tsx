@@ -26,7 +26,7 @@ const Panel: React.FC = () => {
     <div>
       <h1>Employee Work Monitoring</h1>
       <AddEmployeeForm userId={userId} onEmployeeAdded={handleEmployeeAdded} />
-      <EmployeeList userId={userId} />
+      <EmployeeList userId={userId} fetchEmployees={fetchEmployees} />
       <Timeline date={new Date().toString()} />
     </div>
   );

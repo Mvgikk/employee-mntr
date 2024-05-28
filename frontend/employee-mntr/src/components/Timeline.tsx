@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { getStatuses } from '../api';
+import TimelineChart from './TimelineChart';
 
 interface Report {
   id: string;
@@ -45,24 +46,16 @@ const Timeline: React.FC<TimelineProps> = ({ date }) => {
     setSelectedDate(date);
   };
 
+
   return (
     <div>
-      <DatePicker 
-        selected={selectedDate} 
-        onChange={handleDateChange} 
-        dateFormat="yyyy-MM-dd"
-      />
+      <DatePicker selected={selectedDate} onChange={handleDateChange} dateFormat="yyyy-MM-dd" />
       <div>
         {statuses.length === 0 && <div>No statuses available for the selected date.</div>}
         {statuses.map(status => (
           <div key={status.hired_id}>
             <h3>Employee ID: {status.hired_id}</h3>
-            {status.report.length === 0 && <div>No reports available.</div>}
-            {status.report.map(report => (
-              <div key={report.id}>
-                {report.value} - {new Date(report.timestamp).toLocaleTimeString()}
-              </div>
-            ))}
+            <TimelineChart status={status} />
           </div>
         ))}
       </div>

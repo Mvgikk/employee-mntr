@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { getStatuses, addStatus } from '../controllers/statusController';
+import { addStatus, getStatusesAggregated } from '../controllers/statusController';
 
 const router = Router();
 
-router.get('/:date', getStatuses);
+router.get('/:date', getStatusesAggregated);
 router.post('/', addStatus);
 
 export default router;

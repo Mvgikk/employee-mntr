@@ -22,6 +22,37 @@ export const getStatuses = async (req: Request, res: Response) => {
   }
 };
 
+export const getStatusesAggregated = async (req: Request, res: Response) => {
+  const { date } = req.params;
+  try {
+    const startDate = new Date(date);
+    startDate.setHours(0,0,0,0);
+    const endDate = new Date(date);
+    endDate.setHours(23,59,59,999);
+
+    
+    const statuses = await Status.aggregate([
+      { $unwind: "$report" },
+      { $match: { "report.timestamp": { $gte: startDate, $lt: endDate } } },
+      {
+        $group: {
+          _id: "$hired_id",
+          reports: { $push: "$report" }
+        }
+      },
+      {
+        $project: {
+          hired_id: "$_id",
+          report: "$reports"
+        }
+      }
+    ]);
+    res.status(200).json(statuses);
+  } catch (error) {
+    res.status(500).json({ error: (error as Error).message });
+  }
+};
+
 export const addStatus = async (req: Request, res: Response) => {
   const { hired_id, report } = req.body;
   try {

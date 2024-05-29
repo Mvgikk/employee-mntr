@@ -2,19 +2,10 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { ChartOptions, Chart, registerables } from 'chart.js';
 import 'chartjs-adapter-date-fns';
+import { Report, Status} from '../hooks/useFetchStatuses'
 
 Chart.register(...registerables);
 
-interface Report {
-  id: string;
-  value: 'ACTIVE' | 'INACTIVE';
-  timestamp: Date;
-}
-
-interface Status {
-  hired_id: string;
-  report: Report[];
-}
 
 interface TimelineChartProps {
   status: Status;
@@ -33,7 +24,7 @@ const TimelineChart: React.FC<TimelineChartProps> = ({ status }) => {
   const options: ChartOptions<'line'> = {
   };
 
-  return <Line data={data} options={options} />;
+  return <div></div>
 };
 
 export default TimelineChart;

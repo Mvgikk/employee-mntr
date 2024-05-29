@@ -1,33 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { getEmployees } from '../api';
+import React from 'react';
 import EmployeeRow from './EmployeeRow';
-
-interface Employee {
-  id: string;
-  email: string;
-}
+import { Employee } from '../hooks/useFetchEmployees';
 
 interface EmployeeListProps {
-  userId: string;
-  fetchEmployees: () => void;
+  employees: Employee[];
+  onEmployeeRemoved: () => void;
 }
 
-const EmployeeList: React.FC<EmployeeListProps> = ({ userId, fetchEmployees }) => {
-  const [employees, setEmployees] = useState<Employee[]>([]);
-
-
-  useEffect(() => {
-    const loadEmployees = async () => {
-      try {
-        const response = await getEmployees(userId);
-        setEmployees(response.data);
-      } catch (error) {
-        console.error('Error fetching employees:', error);
-      }
-    };
-    loadEmployees();
-  }, [userId, fetchEmployees]);
-
+const EmployeeList: React.FC<EmployeeListProps> = ({ employees, onEmployeeRemoved }) => {
   return (
     <table>
       <thead>
@@ -40,7 +20,7 @@ const EmployeeList: React.FC<EmployeeListProps> = ({ userId, fetchEmployees }) =
       </thead>
       <tbody>
         {employees.map(employee => (
-          <EmployeeRow key={employee.id} employee={employee} onEmployeeRemoved={fetchEmployees} />
+          <EmployeeRow key={employee.id} employee={employee} onEmployeeRemoved={onEmployeeRemoved} />
         ))}
       </tbody>
     </table>

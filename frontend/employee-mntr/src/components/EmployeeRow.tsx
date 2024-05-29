@@ -1,10 +1,7 @@
 import React from 'react';
 import RemoveEmployeeButton from './RemoveEmployeeButton';
+import { Employee } from '../hooks/useFetchEmployees';
 
-interface Employee {
-  id: string;
-  email: string;
-}
 
 interface EmployeeRowProps {
   employee: Employee;

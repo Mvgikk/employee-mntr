@@ -6,7 +6,7 @@ interface RemoveEmployeeButtonProps {
   onEmployeeRemoved: () => void;
 }
 
-const RemoveEmployeeButton: React.FC<RemoveEmployeeButtonProps> = ({ employeeId, onEmployeeRemoved }) => {
+const RemoveEmployeeButton: React.FC<RemoveEmployeeButtonProps> = ({ employeeId,onEmployeeRemoved }) => {
   const handleRemove = async () => {
     try {
       await deleteEmployee(employeeId);

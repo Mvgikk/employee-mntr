@@ -1,28 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { getEmployees } from '../api';
 
-interface Employee {
-    id: string;
-    email: string;
-  }
+export interface Employee {
+  id: string;
+  email: string;
+}
 
-const useEmployeeList = (userId: string) => {
+const useFetchEmployees = (userId: string) => {
   const [employees, setEmployees] = useState<Employee[]>([]);
 
-  const fetchEmployees = async () => {
+  const fetchEmployees = useCallback(async () => {
     try {
       const response = await getEmployees(userId);
       setEmployees(response.data);
     } catch (error) {
       console.error('Error fetching employees:', error);
     }
-  };
+  }, [userId]);
 
   useEffect(() => {
     fetchEmployees();
-  }, [userId]);
+  }, [fetchEmployees]);
 
   return { employees, fetchEmployees };
 };
 
-export default useEmployeeList;
+export default useFetchEmployees;

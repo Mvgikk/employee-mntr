@@ -201,3 +201,7 @@ Content-Type: application/json
 GET http://localhost:5000/statuses/2024-05-27
 
 ###
+
+GET http://localhost:5000/statuses/2024-05-28
+
+###

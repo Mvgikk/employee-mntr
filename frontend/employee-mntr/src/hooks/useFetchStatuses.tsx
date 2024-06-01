@@ -4,7 +4,7 @@ import { getStatuses } from '../api';
 export interface Report {
   id: string;
   value: 'ACTIVE' | 'INACTIVE';
-  timestamp: Date;
+  timestamp: string;
 }
 
 export interface Status {
@@ -14,12 +14,12 @@ export interface Status {
 
 const useFetchStatuses = (initialDate: Date) => {
   const [statuses, setStatuses] = useState<Status[]>([]);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(initialDate);
+  const [selectedDate, setSelectedDate] = useState<Date>(initialDate);
 
   const fetchStatuses = useCallback(async () => {
     if (selectedDate) {
       try {
-        const response = await getStatuses(selectedDate.toString());
+        const response = await getStatuses(selectedDate.toISOString());
         if (response.data) {
           setStatuses(response.data);
         } else {

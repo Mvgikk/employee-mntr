@@ -1,3 +1,6 @@
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-layouts/styles/material.css';
+
 .App {
   text-align: center;
 }
@@ -35,4 +38,38 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.dot-color .state-completed .e-dot {
+  background: #33cc33;
+  outline: 1px dashed #33cc33;
+  border-color: #33cc33;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+td.timeline {
+  width: 60%;
+}
+
+.timeline-container {
+  margin: 20px 0;
 }

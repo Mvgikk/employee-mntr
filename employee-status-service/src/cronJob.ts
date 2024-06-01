@@ -13,8 +13,8 @@ const addHours = (date: Date, hours: number): Date => {
 
 export const startCronJob = (employeeId: string): void => {
   cron.schedule('* * * * *', async () => {
-    const adjustedDate = addHours(new Date(), 2); 
-    const timestamp = adjustedDate.toISOString();
+    //const adjustedDate = addHours(new Date(), 2); 
+    const timestamp = new Date().toISOString();
     console.log(`[${timestamp}] Checking status for employee ID: ${employeeId}`);
 
     try {

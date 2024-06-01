@@ -40,7 +40,6 @@ const Timeline: React.FC<TimelineProps> = ({ date, employeeId, statuses }) => {
             key={report.id}
             cssClass={cssClass}
             content={formattedTime}
-            oppositeContent={report.value}
           />
         );
       }
